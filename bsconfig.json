@@ -1,0 +1,12 @@
+{
+  "name": "koans",
+  "sources": [
+    {
+      "dir": "src",
+    }
+  ],
+  "bs-dependencies": [
+  ],
+  "reason": {
+  }
+}
