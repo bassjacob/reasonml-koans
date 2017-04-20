@@ -3,6 +3,7 @@
   "sources": [
     {
       "dir": "src",
+      "subdirs": "koans"
     }
   ],
   "bs-dependencies": [
