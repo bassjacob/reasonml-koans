@@ -4,9 +4,9 @@
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
+    "bs-containers": "https://github.com/BuckleTypes/bs-containers",
     "mocha": "^3.2.0",
-    "nodemon": "^1.11.0",
-    "npm-run-all": "^4.0.2"
+    "nodemon": "^1.11.0"
   },
   "peerDependencies": {
     "bs-platform": "1.6.0"
@@ -16,7 +16,6 @@
     "make": "bsb -make-world",
     "watch": "bsb -clean-world && bsb -make-world -w",
     "test": "mocha lib/js/src/koans.js",
-    "test:watch": "nodemon -w lib/js/src -x npm test",
-    "start": "npm run clean; npm run make; run-p watch test:watch"
+    "test:watch": "nodemon -w lib/js/src -x npm test"
   }
 }

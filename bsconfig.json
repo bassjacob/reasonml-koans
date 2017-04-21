@@ -7,7 +7,6 @@
     }
   ],
   "bs-dependencies": [
-  ],
-  "reason": {
-  }
+    "bs-containers"
+  ]
 }
