@@ -1,89 +1,64 @@
-let koans = fun _ => ();
-/* module AboutFunctions exposing (testSuite) */
+open Helpers;
 
-/* import Expect */
-/* import Test exposing (describe, test) */
-/* import TestHelpers exposing (..) */
+open Containers;
 
+let add1 x => x + 1;
 
-/* add1 x = */
-/*     x + 1 */
+let add x y => x + y;
 
+let subtract x y => x - y;
 
-/* add : number -> number -> number */
-/* add x y = */
-/*     x + y */
+let subtractFrom4 = subtract 4;
 
+let always5 = Fun.const 5;
 
-/* subtract = */
-/*     \x y -> x - y */
+let subtract4 = (Fun.flip subtract) 4;
 
+let multiplyBy2 x => 2 * x;
 
-/* subtractFrom4 : number -> number */
-/* subtractFrom4 = */
-/*     subtract 4 */
-
-
-/* always5 = */
-/*     always 5 */
-
-
-/* subtract4 = */
-/*     (flip subtract) 4 */
-
-
-/* multiplyBy2 x = */
-/*     2 * x */
-
-
-/* testSuite = */
-/*     describe "About Functions" */
-/*         [ test "the identity function returns whatever it is passed" <| */
-/*             \() -> */
-/*                 xNum */
-/*                     |> Expect.equal (identity 4) */
-/*         , test "functions are defined as 'name args = implementation'" <| */
-/*             \() -> */
-/*                 (add1 xNum) */
-/*                     |> Expect.equal 5 */
-/*         , test "functions may have an optional type signature" <| */
-/*             \() -> */
-/*                 (add 3 xNum) */
-/*                     |> Expect.equal 5 */
-/*         , test "anonymous functions are defined with '\\args -> implementation'" <| */
-/*             \() -> */
-/*                 (subtract 8 xNum) */
-/*                     |> Expect.equal 5 */
-/*         , test "anonymous functions may be defined inline" <| */
-/*             \() -> */
-/*                 ((\x y -> x - y) 8 xNum) */
-/*                     |> Expect.equal 5 */
-/*         , test "functions passed some values return curried functions" <| */
-/*             \() -> */
-/*                 (subtractFrom4 xNum) */
-/*                     |> Expect.equal 1 */
-/*         , test "the always function returns its first argument, no matter what the second is" <| */
-/*             \() -> */
-/*                 xNum */
-/*                     |> Expect.equal (always5 4) */
-/*         , test "the flip function flips the order of the first two arguments of a function" <| */
-/*             \() -> */
-/*                 xNum */
-/*                     |> Expect.equal (subtract4 9) */
-/*         , test "f <| a applies the function f to the arg a" <| */
-/*             \() -> */
-/*                 xNum */
-/*                     |> Expect.equal (subtract4 <| add 1 9) */
-/*         , test "a |> f applies the function f to the arg a" <| */
-/*             \() -> */
-/*                 xNum */
-/*                     |> Expect.equal (add 1 9 |> subtract4) */
-/*         , test "g << f composes function g with function f" <| */
-/*             \() -> */
-/*                 xNum */
-/*                     |> Expect.equal ((multiplyBy2 << subtract4) 9) */
-/*         , test "f >> g composes function g with function f" <| */
-/*             \() -> */
-/*                 xNum */
-/*                     |> Expect.equal ((subtract4 >> multiplyBy2) 9) */
-/*         ] */
+let koans _ => Mocha.describe "Functions" @@ fun _ => {
+  Mocha.it "the id function returns whatever it is passed" @@
+    fun _ =>
+        (__())
+            |> Mocha.eq (Fun.id 4);
+  Mocha.it "functions are defined as 'name args = implementation'" @@
+    fun _ =>
+        (add1 (__()))
+            |> Mocha.eq 5;
+  Mocha.it "functions may have an optional type signature" @@
+    fun _ =>
+        (add 3 (__()))
+            |> Mocha.eq 5;
+  Mocha.it "anonymous functions are defined with '\\args -> implementation'" @@
+    fun _ =>
+        (subtract 8 (__()))
+            |> Mocha.eq 5;
+  Mocha.it "anonymous functions may be defined inline" @@
+    fun _ =>
+        ((fun x y => x - y) 8 (__()))
+            |> Mocha.eq 5;
+  Mocha.it "functions passed some values return curried functions" @@
+    fun _ =>
+        (subtractFrom4 (__()))
+            |> Mocha.eq 1;
+  Mocha.it "the always function returns its first argument, no matter what the second is" @@
+    fun _ =>
+        (__())
+            |> Mocha.eq (always5 4);
+  Mocha.it "the flip function flips the order of the first two arguments of a function" @@
+    fun _ =>
+        (__())
+            |> Mocha.eq (subtract4 9);
+  Mocha.it "f @@ a applies the function f to the arg a" @@
+    fun _ =>
+        (__())
+            |> Mocha.eq (subtract4 @@ add 1 9);
+  Mocha.it "a |> f applies the function f to the arg a" @@
+    fun _ =>
+        (__())
+            |> Mocha.eq (add 1 9 |> subtract4);
+  Mocha.it "Fun.(%) composes function g with function f" @@
+    fun _ =>
+        (__())
+            |> Mocha.eq ((Fun.(%) subtract4 multiplyBy2) 9);
+};

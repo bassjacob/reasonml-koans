@@ -1,67 +1,44 @@
-let koans = fun _ => ();
-/* module AboutMathematicalOperators exposing (testSuite) */
+open Helpers;
 
-/* import Expect */
-/* import Test exposing (describe, test) */
-/* import TestHelpers exposing (..) */
-
-
-/* testSuite = */
-/*     describe "About Mathematical Operators" */
-/*         [ test "negate gives the negative of a number" <| */
-/*             \() -> */
-/*                 (negate xNum) */
-/*                     |> Expect.equal -3 */
-/*         , test "abs gives the absolute value of a number" <| */
-/*             \() -> */
-/*                 (abs xNum) */
-/*                     |> Expect.equal 3 */
-/*         , test "sqrt gives the square root of a Float" <| */
-/*             \() -> */
-/*                 (sqrt xNum) */
-/*                     |> Expect.equal 3.0 */
-/*         , test "+ adds numbers" <| */
-/*             \() -> */
-/*                 (1 + xNum) */
-/*                     |> Expect.equal 3 */
-/*         , test "- subtracts numbers" <| */
-/*             \() -> */
-/*                 (7 - xNum) */
-/*                     |> Expect.equal 3 */
-/*         , test "* multiplies numbers" <| */
-/*             \() -> */
-/*                 (4 * xNum) */
-/*                     |> Expect.equal 6 */
-/*         , test "/ divides Floats" <| */
-/*             \() -> */
-/*                 (5 / xNum) */
-/*                     |> Expect.equal 2.5 */
-/*         , test "// divides Ints" <| */
-/*             \() -> */
-/*                 (5 // xNum) */
-/*                     |> Expect.equal 2 */
-/*         , test "rem gives the remainder after division" <| */
-/*             \() -> */
-/*                 (5 |> rem xNum) */
-/*                     |> Expect.equal 2 */
-/*         , test "% performs modular arithmetic (which is different)" <| */
-/*             \() -> */
-/*                 xNum */
-/*                     |> Expect.equal (-1 % 5) */
-/*         , test "logBase returns the log of the value in the given base" <| */
-/*             \() -> */
-/*                 xNum */
-/*                     |> Expect.equal (logBase 2 8) */
-/*         , test "clamp returns the value if it is between the given min and max" <| */
-/*             \() -> */
-/*                 xNum */
-/*                     |> Expect.equal (clamp 1 10 5) */
-/*         , test "clamp returns the min value if the value is below the minimum" <| */
-/*             \() -> */
-/*                 xNum */
-/*                     |> Expect.equal (clamp 1 10 -5) */
-/*         , test "clamp returns the max value if the value is above the maximum" <| */
-/*             \() -> */
-/*                 xNum */
-/*                     |> Expect.equal (clamp 1 10 50) */
-/*         ] */
+let koans = fun _ => Mocha.describe "Mathematical Operators" @@ fun _ => {
+  Mocha.it "abs gives the absolute value of a number" @@
+    fun _ =>
+        (abs (__()))
+            |> Mocha.eq 3;
+  Mocha.it "sqrt gives the square root of a Float" @@
+    fun _ =>
+        (sqrt (__()))
+            |> Mocha.eq 3.0;
+  Mocha.it "+ adds numbers" @@
+    fun _ =>
+        (1 + (__()))
+            |> Mocha.eq 3;
+  Mocha.it "- subtracts numbers" @@
+    fun _ =>
+        (7 - (__()))
+            |> Mocha.eq 3;
+  Mocha.it "* multiplies numbers" @@
+    fun _ =>
+        (4 * (__()))
+            |> Mocha.eq 6;
+  Mocha.it "/. divides Floats" @@
+    fun _ =>
+        (5.0 /. (__()))
+            |> Mocha.eq 2.5;
+  Mocha.it "/ divides Ints" @@
+    fun _ =>
+        (5 / (__()))
+            |> Mocha.eq 2;
+  Mocha.it "mod performs modular arithmetic (which is different)" @@
+    fun _ =>
+        (__())
+            |> Mocha.eq (-1 mod 5);
+  Mocha.it "log returns the natural log of the value" @@
+    fun _ =>
+        (__())
+            |> Mocha.eq (log 2.0);
+  Mocha.it "log10 returns the base10 log of the value" @@
+    fun _ =>
+        (__())
+            |> Mocha.eq (log10 2.0);
+};

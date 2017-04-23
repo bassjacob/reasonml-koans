@@ -1,83 +1,45 @@
-let koans = fun _ => ();
+open Helpers;
+open Containers;
 
-
-/* module AboutStrings exposing (testSuite) */
-
-/* import Expect */
-/* import String */
-/* import Test exposing (describe, test) */
-/* import TestHelpers exposing (..) */
-
-
-/* testSuite = */
-/*     describe "About Strings" */
-/*         [ test "length returns the string length" <| */
-/*             \() -> */
-/*                 xNum */
-/*                     |> Expect.equal (String.length "Hello") */
-/*         , test "isEmpty tests for an empty string" <| */
-/*             \() -> */
-/*                 (String.isEmpty xString) */
-/*                     |> Expect.true "Should be True" */
-/*         , test "reverse returns the reverse of a string" <| */
-/*             \() -> */
-/*                 xString */
-/*                     |> Expect.equal (String.reverse "Hello") */
-/*         , test "repeat returns the string repeated n times" <| */
-/*             \() -> */
-/*                 xString */
-/*                     |> Expect.equal (String.repeat 2 "ya") */
-/*         , test "the ++ infix function appends two strings" <| */
-/*             \() -> */
-/*                 xString */
-/*                     |> Expect.equal ("Elm" ++ "Lang") */
-/*         , test "append does the same thing" <| */
-/*             \() -> */
-/*                 xString */
-/*                     |> Expect.equal (String.append "Elm" "Lang") */
-/*         , test "concat appends a list of strings together" <| */
-/*             \() -> */
-/*                 xString */
-/*                     |> Expect.equal (String.concat [ "Elm", "Lang", "Yay!" ]) */
-/*         , test "join is like concat with a separator" <| */
-/*             \() -> */
-/*                 xString */
-/*                     |> Expect.equal (String.join "," [ "I'm", "a", "csv" ]) */
-/*         , test "split does the opposite" <| */
-/*             \() -> */
-/*                 xList */
-/*                     |> Expect.equal (String.split "," "I'm,a,csv") */
-/*         , test "slice gets a substring" <| */
-/*             \() -> */
-/*                 xString */
-/*                     |> Expect.equal (String.slice 4 12 "I'm a string") */
-/*         , test "negative indices start from the end" <| */
-/*             \() -> */
-/*                 xString */
-/*                     |> Expect.equal (String.slice -8 -1 "I'm a string") */
-/*         , test "left takes the first n characters of a string" <| */
-/*             \() -> */
-/*                 xString */
-/*                     |> Expect.equal (String.left 3 "I'm a string") */
-/*         , test "right takes the last n characters of a string" <| */
-/*             \() -> */
-/*                 xString */
-/*                     |> Expect.equal (String.right 3 "I'm a string") */
-/*         , test "dropLeft drops the first n characters of a string" <| */
-/*             \() -> */
-/*                 xString */
-/*                     |> Expect.equal (String.dropLeft 3 "I'm a string") */
-/*         , test "dropRight drops the last n characters of a string" <| */
-/*             \() -> */
-/*                 xString */
-/*                     |> Expect.equal (String.dropRight 3 "I'm a string") */
-/*         , test "contains looks for a substring" <| */
-/*             \() -> */
-/*                 xBool */
-/*                     |> Expect.equal (String.contains "string" "I'm a string") */
-/*         , test "indexes gives the location of each occurance" <| */
-/*             -- there are sooooo many string functions, just check them out */
-/*             \() -> */
-/*                 xList */
-/*                     |> Expect.equal (String.indexes "string" "I'm a string") */
-/*         ] */
+let koans _ => Mocha.describe "Strings" @@ fun _ => {
+  Mocha.it "length returns the string length" @@
+    fun _ =>
+        (__())
+            |> Mocha.eq (String.length "Hello");
+  Mocha.it "reverse returns the reverse of a string" @@
+    fun _ =>
+        (__())
+            |> Mocha.eq (String.rev "Hello");
+  Mocha.it "repeat returns the string repeated n times" @@
+    fun _ =>
+        (__())
+            |> Mocha.eq (String.repeat "ya" 2);
+  Mocha.it "the ^ infix function appends two strings" @@
+    fun _ =>
+        (__())
+            |> Mocha.eq ("Reason" ^ "ML");
+  Mocha.it "concat appends a list of strings together, interpolated with a separator" @@
+    fun _ =>
+        (__())
+            |> Mocha.eq (String.concat " " [ "ReasonML", "Lang", "Yay!" ]);
+  Mocha.it "slice gets a substring" @@
+    fun _ =>
+        (__())
+            |> Mocha.eq (String.sub "I'm a string" 4 12);
+  Mocha.it "negative indices start from the end" @@
+    fun _ =>
+        (__())
+            |> Mocha.eq (String.sub "I'm a string" (-8) (-1));
+  Mocha.it "left takes the first n characters of a string" @@
+    fun _ =>
+        (__())
+            |> Mocha.eq (String.take 3 "I'm a string");
+  Mocha.it "dropLeft drops the first n characters of a string" @@
+    fun _ =>
+        (__())
+            |> Mocha.eq (String.drop 3 "I'm a string");
+  Mocha.it "find looks for a substring, returning the index of it's place, or -1" @@
+    fun _ =>
+        (__())
+            |> Mocha.eq (String.find start::0 sub::"string" "I'm a string");
+}

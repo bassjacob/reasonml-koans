@@ -4,12 +4,12 @@
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
-    "bs-containers": "https://github.com/BuckleTypes/bs-containers",
     "mocha": "^3.2.0",
     "nodemon": "^1.11.0"
   },
   "peerDependencies": {
-    "bs-platform": "1.6.0"
+    "bs-containers": "*",
+    "bs-platform": "1.7.0"
   },
   "scripts": {
     "clean": "bsb -clean-world",

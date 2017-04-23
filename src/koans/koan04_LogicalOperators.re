@@ -1,27 +1,17 @@
-let koans = fun _ => ();
-/* module AboutLogicalOperators exposing (testSuite) */
+open Helpers;
 
-/* import Expect */
-/* import Test exposing (describe, test) */
-/* import TestHelpers exposing (..) */
+let koans = fun _ => Mocha.describe "Logical Operators" @@ fun _ => {
+  Mocha.it "not negates a boolean" @@
+    fun _ =>
+        (not (__()))
+            |> Mocha.eq false;
+  Mocha.it "&& is a logical AND" @@
+    fun _ =>
+        (true && (__()))
+            |> Mocha.ok;
+  Mocha.it "|| is a logical OR" @@
+    fun _ =>
+        (false || (__()))
+            |> Mocha.ok;
+}
 
-
-/* testSuite = */
-/*     describe "About Logical Operators" */
-/*         [ test "not negates a boolean" <| */
-/*             \() -> */
-/*                 (not xBool) */
-/*                     |> Expect.equal False */
-/*         , test "&& is a logical AND" <| */
-/*             \() -> */
-/*                 (True && xBool) */
-/*                     |> Expect.true "Should be True" */
-/*         , test "|| is a logical OR" <| */
-/*             \() -> */
-/*                 (False || xBool) */
-/*                     |> Expect.true "Should be True" */
-/*         , test "xor is a logical XOR" <| */
-/*             \() -> */
-/*                 (False |> xor xBool) */
-/*                     |> Expect.true "Should be True" */
-/*         ] */
